@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     when "title"
       @movies = Movie.order("title")
       @title_highlighter = "hilite"
-    when "release"
+    when "release_date"
       @movies = Movie.order("release_date")
       @release_highlighter = "hilite"
     end
