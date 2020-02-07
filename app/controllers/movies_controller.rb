@@ -12,6 +12,14 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    case sort 
+    when 'title'
+      @movies = Movie.order(:title)
+      @highlightt = 'hilite'
+    when 'release_date'
+      @movies = Movie.order(:release_date)
+      @highlightr = 'hilite'
+    end
   end
 
   def new
