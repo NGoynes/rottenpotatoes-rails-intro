@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     @filter = @all_ratings
-    @movies = Movie.all
+    @movies = Movie.with_ratings(@filter)
     
     if params[:ratings].present?
       @filter = params[:ratings].keys
