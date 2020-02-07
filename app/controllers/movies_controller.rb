@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
       @filter = params[:ratings].keys
       @movies = Movie.with_ratings(@filter)
     else
+      @filter = @all_ratings
       @movies = Movie.all
     end
     
