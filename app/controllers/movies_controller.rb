@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    case sort
+    case params[:sort]
     when "title"
       @movies = Movie.order("title")
       @title_highlighter = "hilite"
