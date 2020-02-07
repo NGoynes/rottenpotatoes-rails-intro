@@ -12,6 +12,8 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+    @filter = @all_ratings
+    @movies = Movie.all
     
     if params[:ratings].present?
       @filter = params[:ratings].keys
