@@ -14,7 +14,8 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     
     if params[:ratings].present?
-      @movies = Movie.with_ratings(params[:ratings])
+      @filter = params[:ratings].keys
+      @movies = Movie.with_ratings(@filter)
     else
       @movies = Movie.all
     end

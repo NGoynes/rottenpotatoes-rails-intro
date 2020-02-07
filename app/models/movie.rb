@@ -3,6 +3,6 @@ class Movie < ActiveRecord::Base
         ['G','PG','PG-13','R']
     end
     def self.with_ratings(ratings)
-       return Movie.where(rating: ratings)
+       Movie.where(rating: ratings)
     end
 end
