@@ -16,9 +16,6 @@ class MoviesController < ApplicationController
     if params[:ratings].present?
       @filter = params[:ratings].keys
       @movies = Movie.with_ratings(@filter)
-    else
-      @filter = @all_ratings
-      @movies = Movie.all
     end
     
     case params[:sort]
