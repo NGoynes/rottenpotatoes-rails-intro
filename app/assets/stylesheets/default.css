@@ -1,6 +1,6 @@
 /* Simple CSS styling for RottenPotatoes app */
 /* Add these lines to app/assets/stylesheets/application.css */
-
+ 
 html, body {
   margin: 0;
   padding: 0;
@@ -51,7 +51,7 @@ h1 {
   padding: 4px;
   text-align: left;
 }
-#notice #warning {
+#notice, #warning {
   background: rosybrown;
   margin: 1em 0;
   padding: 4px;
