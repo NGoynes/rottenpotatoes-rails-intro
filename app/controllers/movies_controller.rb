@@ -14,10 +14,10 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     case sort 
     when 'title'
-      @movies = Movie.order(:title)
+      @movies = Movie.order('title')
       @highlightt = 'hilite'
     when 'release_date'
-      @movies = Movie.order(:release_date)
+      @movies = Movie.order('release_date')
       @highlightr = 'hilite'
     end
   end
