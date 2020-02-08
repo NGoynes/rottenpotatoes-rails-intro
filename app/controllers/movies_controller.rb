@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
     
     if @filter.present?
       @filter = params[:ratings]
-      @movies = Movie.with_ratings(@filter.keys)
+      @movies = Movie.with_ratings(@filter)
     end
     
     case @sort
