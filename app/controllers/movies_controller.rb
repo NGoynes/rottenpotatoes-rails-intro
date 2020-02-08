@@ -20,6 +20,12 @@ class MoviesController < ApplicationController
     session[:sort] = @sort 
     session[:ratings] = @filter
     
+    @movies = Movie.order @sort
+    if @filter
+      @movies = Movie.with_ratings(@filter.keys).order @sort
+    end
+    
+=begin
     if @filter
       @movies = Movie.with_ratings(@filter.keys)
     end
@@ -32,6 +38,7 @@ class MoviesController < ApplicationController
       @movies = Movie.order("release_date")
       @release_highlighter = "hilite"
     end
+=end
   end
 
   def new
