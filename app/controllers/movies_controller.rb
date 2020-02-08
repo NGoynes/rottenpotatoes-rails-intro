@@ -21,6 +21,7 @@ class MoviesController < ApplicationController
     session[:ratings] = @filter
     
     if @filter.present?
+      @filter = params[:ratings]
       @movies = Movie.with_ratings(@filter.keys)
     end
     
