@@ -12,15 +12,19 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
-    @filter = @all_ratings
     @movies = Movie.with_ratings(@filter)
     
-    if params[:ratings].present?
-      @filter = params[:ratings].keys
-      @movies = Movie.with_ratings(@filter)
+    @sort = params[:sort] || session[:sort]
+    @filter = params[:ratings] || session[:ratings]
+    
+    session[:sort] = @sort
+    session[:ratings] = @filter
+    
+    if @filter.present?
+      @movies = Movie.with_ratings(@filter.keys)
     end
     
-    case params[:sort]
+    case @sort
     when "title"
       @movies = Movie.order("title")
       @title_highlighter = "hilite"
