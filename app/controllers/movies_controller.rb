@@ -26,10 +26,10 @@ class MoviesController < ApplicationController
     
     case @sort
     when "title"
-      @movies = Movie.order("title")
+      @movies = Movie.with_ratings(@filter.keys).order("title")
       @title_highlighter = "hilite"
     when "release_date"
-      @movies = Movie.order("release_date")
+      @movies = Movie.with_ratings(@filter.keys).order("release_date")
       @release_highlighter = "hilite"
     end
   end
