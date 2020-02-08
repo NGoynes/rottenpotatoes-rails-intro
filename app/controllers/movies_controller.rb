@@ -11,25 +11,25 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = Movie.all_ratings
-    @movies = Movie.all
+    @all_ratings = Movie.all_ratings #load movie ratings from model
+    @movies = Movie.all #get all movies
     
-    @sort = params[:sort] || session[:sort]
-    @filter = params[:ratings] || session[:ratings]
+    @sort = params[:sort] || session[:sort] #determine whether or not we are remembering an old session for sorting
+    @filter = params[:ratings] || session[:ratings] #do the same for the filtering
     
-    session[:sort] = @sort
-    session[:ratings] = @filter
+    session[:sort] = @sort #update the session so it can be remembered later
+    session[:ratings] = @filter #do the same for ratings
     
     if @filter.present?
-      @movies = Movie.with_ratings(@filter.keys)
+      @movies = Movie.with_ratings(@filter.keys) #filter through a function defined in the model
     end
     
     case @sort
     when "title"
-      @movies = Movie.with_ratings(@filter.keys).order("title")
+      @movies = Movie.with_ratings(@filter.keys).order("title") #order only the movies we've allowed through the filter
       @title_highlighter = "hilite"
     when "release_date"
-      @movies = Movie.with_ratings(@filter.keys).order("release_date")
+      @movies = Movie.with_ratings(@filter.keys).order("release_date") #same here
       @release_highlighter = "hilite"
     end
   end
