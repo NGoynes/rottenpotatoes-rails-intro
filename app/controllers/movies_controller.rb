@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     
     @sort = params[:sort] || session[:sort]
-    @filter = params[:ratings] || session[:ratings] || @all_ratings
+    @filter = params[:ratings] || session[:ratings]
     
     session[:sort] = @sort
     session[:ratings] = @filter
