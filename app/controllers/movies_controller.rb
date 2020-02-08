@@ -17,11 +17,12 @@ class MoviesController < ApplicationController
     @sort = params[:sort] || session[:sort]
     @filter = params[:ratings] || session[:ratings]
     
-    session[:sort] = @sort
+    session[:sort] = @sort 
     session[:ratings] = @filter
     
-    if @filter.present?
-      @movies = Movie.with_ratings(@filter.keys)
+    if params[:ratings].present?
+      @filter = params[:ratings].keys
+      @movies = Movie.with_ratings(@filter)
     end
     
     case @sort
