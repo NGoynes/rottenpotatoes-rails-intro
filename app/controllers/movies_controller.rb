@@ -12,23 +12,12 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
-    @movies = Movie.with_ratings(@filter)
     
     @sort = params[:sort] || session[:sort]
     @filter = params[:ratings] || session[:ratings]
     
     session[:sort] = @sort 
     session[:ratings] = @filter
-    
-    @movies = Movie.order @sort
-    if @filter
-      @movies = Movie.with_ratings(@filter.keys).order @sort
-    end
-    
-=begin
-    if @filter
-      @movies = Movie.with_ratings(@filter.keys)
-    end
     
     case @sort
     when "title"
@@ -38,7 +27,10 @@ class MoviesController < ApplicationController
       @movies = Movie.order("release_date")
       @release_highlighter = "hilite"
     end
-=end
+    
+    if @filter
+      @movies = Movie.with_ratings(@filter.keys)
+    end
   end
 
   def new
