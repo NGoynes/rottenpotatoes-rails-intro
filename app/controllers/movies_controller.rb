@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
     end
     
     if @filter
-      @movies = Movie.with_ratings(@filter.keys)
+      @movies = Movie.with_ratings(@filter.keys).order @sort
     end
   end
 
