@@ -20,8 +20,8 @@ class MoviesController < ApplicationController
     session[:sort] = @sort 
     session[:ratings] = @filter
     
-    if params[:ratings].present?
-      @filter = params[:ratings].keys
+    if params[:ratings].present? || session[:ratings].present?
+      @filter = params[:ratings].keys || session[:ratings]
       @movies = Movie.with_ratings(@filter)
     end
     
